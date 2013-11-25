@@ -10,9 +10,11 @@ var ConwayGameOfLife = {
 	temp_game_space: [],
 
 	start: function() {
-		//this.createGameBoard();
+		this.createGameBoard();
 		//this.printGameBoard();
-		this.conwayGameRules(10);
+		//this.conwayGameRules(10);
+
+		this.startGameOfLife();
 	},
 
 	createGameBoard : function() {
@@ -26,6 +28,12 @@ var ConwayGameOfLife = {
 		this.temp_game_space = this.game_space.concat();
 	},
 
+	startGameOfLife: function() {
+		for ( var i = 0; i < 100; i++ ) {
+			this.conwayGameRules(i);
+		}
+	},
+
 	IsLiveOrDead: function() {
 		return parseInt(Math.random() * (2)); // (max - min + 1) = 2
 	},
@@ -35,19 +43,18 @@ var ConwayGameOfLife = {
 		var count = 0;		
 		for ( var i = 0; i <= 100; i++ ) {
 			if( i % 10 == 0 ) {
-				console.log(temp_print_game[count]);
+				//console.log(temp_print_game[count]);
 				count++;
 				temp_print_game[count] = [];
 			}
 
 			temp_print_game[count].push(this.game_space[i]);
 		}
-		console.log(this.temp_game_space);
+		//console.log(this.temp_game_space);
 	},
 
 	conwayGameRules: function(cell) {
 		var R = false, L = false, T = false, B = false;
-
 		// check top
 		if(cell <= 10) 
 			T = true;
@@ -99,7 +106,13 @@ var ConwayGameOfLife = {
 			delete surround[cell + 11];
 		}
 
-		console.log(surround);
+		var count = 0;
+		for (var x in surround) {
+			if(this.game_space[x] == 1)
+				count++;
+		}
+
+		console.log(count);
 		return true;
 	}
 }
