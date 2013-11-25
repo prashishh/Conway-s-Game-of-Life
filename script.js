@@ -1,6 +1,5 @@
 /*
 	Initiate a random 10X10 Game Board with random 0s and 1s
-	
 
 */
 
@@ -9,7 +8,7 @@ var ConwayGameOfLife = {
 	game_space: [],
 	temp_game_space: [],
 
-	start: function() {
+	start: function(){
 		this.createGameBoard();
 		//this.printGameBoard();
 		//this.conwayGameRules(10);
@@ -17,8 +16,8 @@ var ConwayGameOfLife = {
 		this.startGameOfLife();
 	},
 
-	createGameBoard : function() {
-		for ( var i = 0; i < 100; i++ ) {
+	createGameBoard : function(){
+		for (var i=0; i < 100; i++) {
 			this.game_space[i] = this.IsLiveOrDead();
 		}
 		this.copyGameBoard();
@@ -29,20 +28,20 @@ var ConwayGameOfLife = {
 	},
 
 	startGameOfLife: function() {
-		for ( var i = 0; i < 100; i++ ) {
+		for (var i=0; i < 100; i++) {
 			this.conwayGameRules(i);
 		}
 	},
 
 	IsLiveOrDead: function() {
-		return parseInt(Math.random() * (2)); // (max - min + 1) = 2
+		return parseInt(Math.random() * (2)); //(max - min + 1) = 2
 	},
 
 	printGameBoard: function() {
 		var temp_print_game = [];
 		var count = 0;		
 		for ( var i = 0; i <= 100; i++ ) {
-			if( i % 10 == 0 ) {
+			if( i % 10 === 0 ) {
 				//console.log(temp_print_game[count]);
 				count++;
 				temp_print_game[count] = [];
@@ -115,4 +114,4 @@ var ConwayGameOfLife = {
 		console.log(count);
 		return true;
 	}
-}
+};
