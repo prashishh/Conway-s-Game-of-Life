@@ -12,19 +12,29 @@ var ConwayGameOfLife = {
 	start: function(){
 		this.createGameBoard();
 		count = 0;
-		var temp_space;
+		var c = 0;
+		var temp_space = [];
 		//this.printGameBoard();
 		//this.conwayGameRules(10);
 		//this.printGameBoard(this.game_space);
 		//this.startGameOfLife();
 		//this.printGameBoard(this.game_space);
 		
+
 		while(1) {
 			temp_space = this.startGameOfLife();
-			if(this.hash_game_space.indexOf(temp_space) == -1) {
+			if(this.hash_game_space.indexOf(temp_space.join()) < 0 || count == 0) {
+				//this.printGameBoard(temp_space);
+				//c++;
+				//console.log(temp_space);
 				//console.log(count);
-				this.hash_game_space.push(temp_space);
+				this.hash_game_space.push(temp_space.join());
 				count++;
+				//if (count > 10000) {
+				//	console.log('Timeout');
+				//	break;
+				//}
+
 			} else {
 				console.log(count);
 				console.log('end');
@@ -91,7 +101,7 @@ var ConwayGameOfLife = {
 		if(cell % 10 == 0)
 			R = true;
 		// check left
-		if(String(cell)[1] == '1' || cell == 1)
+		if(String(cell)[1] == 1 || cell == 1)
 			L = true;
 
 		return this.checkconwayGameRules(cell, T, R, B, L)		
@@ -99,6 +109,7 @@ var ConwayGameOfLife = {
 
 	checkconwayGameRules: function(cell, T, R, B, L) {
 		var surround = {};
+		
 		surround[cell - 11] = true;
 		surround[cell - 10] = true;
 		surround[cell - 9] = true;
@@ -131,6 +142,43 @@ var ConwayGameOfLife = {
 			delete surround[cell + 1];
 			delete surround[cell + 11];
 		}
+
+		/*
+		surround[cell - 4] = true;
+		surround[cell - 3] = true;
+		surround[cell - 2] = true;
+		surround[cell - 1] = true;
+		surround[cell + 1] = true;
+		surround[cell + 2] = true;
+		surround[cell + 3] = true;
+		surround[cell + 4] = true;
+		
+
+		if( T ) {
+			delete surround[cell - 4];
+			delete surround[cell - 3];
+			delete surround[cell - 2];		
+		} 
+
+		if( B ) {
+			delete surround[cell + 2];
+			delete surround[cell + 3];
+			delete surround[cell + 4];
+		}
+
+		if( L ) {
+			delete surround[cell - 4];
+			delete surround[cell - 1];
+			delete surround[cell + 2];
+		}
+		
+		if( R ) {
+			delete surround[cell - 2];
+			delete surround[cell + 1];
+			delete surround[cell + 4];
+		}
+
+		*/
 
 		var count = 0;
 		for (var x in surround) {
