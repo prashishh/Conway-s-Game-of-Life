@@ -1,12 +1,15 @@
+//#include <boost/algorithm/string/join.hpp>
 #include <iostream>
 #include <vector>
 #include <stdlib.h>
+#include <string>
 #include <sstream>
+#include <time.h>
 
 using namespace std;
 
 vector<bool> game_space;
-vector<bool> hash_game_space;
+vector<string> hash_game_space;
 vector<bool> temp_game_space;
 
 int IsLiveOrDead() {
@@ -14,9 +17,18 @@ int IsLiveOrDead() {
 }
 
 void createGameBoard() {
+    srand( (unsigned)time( NULL ) );
     for(int i = 0; i < 100; i++) {
         game_space.push_back(IsLiveOrDead());
     }
+    
+    string temp = "";
+    
+    for(vector<bool>::iterator i = game_space.begin(); i != game_space.end(); ++i) {
+        //cout << to_string(*i);
+        temp += to_string(*i); // this will print all the contents of *features*
+    }
+    hash_game_space.push_back(temp);
 }
 
 void printGameBoard(vector<bool> temp_space) {
@@ -149,20 +161,73 @@ bool conwayGameRules(int cell) {
 }
 
 
-void startGameOfLife() {
+string startGameOfLife() {
+    temp_game_space.clear();
     for(int i = 1; i <= 100; i++) {
         if(conwayGameRules(i) == true)
             temp_game_space.push_back(1);
         else
             temp_game_space.push_back(0);
     }
+    
+    game_space = temp_game_space;
+    //printGameBoard(game_space);
+    //std::string joined = boost::algorithm::join(game_space, "");
+    
+    string temp = "";
+    
+    for(vector<bool>::iterator i = temp_game_space.begin(); i != temp_game_space.end(); ++i) {
+        //cout << to_string(*i);
+        temp += to_string(*i); // this will print all the contents of *features*
+    }
+     
+    
+    
+    //cout << temp;
+    return temp;
 
-    printGameBoard(temp_game_space);
+}
+
+void startGame() {
+    int count = 1;
+    string temp_numb;
+    cout << "\nBeginning new game.." << endl;
+    
+    //temp_numb = startGameOfLife();
+    //cout << temp_numb;
+    
+    while(1) {
+        temp_numb = startGameOfLife();
+        //cout << temp_numb;
+        if( find(hash_game_space.begin(), hash_game_space.end(), temp_numb) == hash_game_space.end() || count == 1) {
+            hash_game_space.push_back(temp_numb);
+            count++;
+            //cout << count << endl;
+        
+        /*
+        for(vector<string>::iterator i = hash_game_space.begin(); i != hash_game_space.end(); ++i) {
+            cout << *i << "\n";
+           // temp += to_string(*i); // this will print all the contents of *features*
+        }
+        */
+            
+        } else {
+            cout << "\n Game Ended at " << count;
+            printGameBoard(game_space);
+            break;
+        }
+    }
+    
+    
 }
 
 int main() {
     createGameBoard();
     printGameBoard(game_space);
-    startGameOfLife();
+    startGame();
     return 0;
 }
+
+
+
+
