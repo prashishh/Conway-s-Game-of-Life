@@ -20,11 +20,15 @@ var ConwayGameOfLife = {
 		//this.startGameOfLife();
 		//this.printGameBoard(this.game_space);
 		
-
+		console.log("Beginning New Game...")
+		//console.log(this.printGameBoard(this.game_space));
 		while(1) {
+
 			temp_space = this.startGameOfLife();
 			if(this.hash_game_space.indexOf(temp_space.join()) < 0 || count == 0) {
-				//this.printGameBoard(temp_space);
+				
+
+				this.printGameBoard(temp_space);
 				//c++;
 				//console.log(temp_space);
 				//console.log(count);
@@ -36,8 +40,7 @@ var ConwayGameOfLife = {
 				//}
 
 			} else {
-				console.log(count);
-				console.log('end');
+				console.log('Ended at ' + count + " Generation");
 				break;		
 			}
 		}
@@ -79,7 +82,9 @@ var ConwayGameOfLife = {
 		var count = 0;		
 		for ( var i = 0; i <= 100; i++ ) {
 			if( i % 10 === 0 ) {
-				console.log(temp_print_game[count]);
+				if (typeof temp_print_game[count] != 'undefined')
+					console.log(temp_print_game[count]);
+
 				count++;
 				temp_print_game[count] = [];
 			}
