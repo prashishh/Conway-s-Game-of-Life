@@ -10,10 +10,60 @@
         
     <script type="text/javascript" src="script.js"></script>
 
-    <script type="text/javascript">
-        ConwayGameOfLife.start();
-    </script>
+
 </head>
     
+ <body>
+	<input type="button" id="buttonid" value="click">
 
-<body>
+    <canvas id="ex03"></canvas>
+
+    <script type="text/javascript">
+	ConwayGameOfLife.start();
+    
+    function draw_ex03(){
+        var canvas = document.getElementById('ex03');
+        var ctx = canvas.getContext('2d');
+        var width = canvas.width;
+        var height = canvas.height;
+        
+        var rectSize = 10;
+        var count = 0;
+        for(var i=0; i<10; i++){
+            var yPos = (rectSize+1)*i;
+            
+            for(var j=0;j<10;j++) {
+                if(ConwayGameOfLife.game_space[count] == "1"){
+                    ctx.fillStyle="#000000";
+                    ctx.fillRect((rectSize+1)*j,yPos,rectSize,rectSize);  
+                } else {
+                    ctx.fillStyle="#FFFFFF";
+                    ctx.fillRect((rectSize+1)*j,yPos,rectSize,rectSize);  
+                }
+
+
+                count++;
+            }
+        }
+    }
+
+	function listener() {
+	    var button = document.getElementById("buttonid");
+        button.addEventListener("click", function() { 
+        	ConwayGameOfLife.oneLoop();
+            draw_ex03();
+	 	});
+        draw_ex03();
+
+	};
+
+    function on_load() {
+        listener();
+    }
+
+      window.onload = on_load();
+      
+    </script>
+
+ </body>
+ </html>

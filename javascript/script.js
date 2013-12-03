@@ -22,29 +22,13 @@ var ConwayGameOfLife = {
 		
 		console.log("Beginning New Game...")
 		//console.log(this.printGameBoard(this.game_space));
-		while(1) {
+		this.oneLoop();
+	},
 
-			temp_space = this.startGameOfLife();
-			if(this.hash_game_space.indexOf(temp_space.join()) < 0 || count == 0) {
-				
-
-				this.printGameBoard(temp_space);
-				//c++;
-				//console.log(temp_space);
-				//console.log(count);
-				this.hash_game_space.push(temp_space.join());
-				count++;
-				//if (count > 10000) {
-				//	console.log('Timeout');
-				//	break;
-				//}
-
-			} else {
-				console.log('Ended at ' + count + " Generation");
-				break;		
-			}
-		}
-		
+	oneLoop: function() {
+		temp_space = this.startGameOfLife();
+		this.printGameBoard(temp_space);
+		console.log("\n");
 	},
 
 	createGameBoard : function(){
@@ -67,7 +51,7 @@ var ConwayGameOfLife = {
 				temp_game_space.push(0);
 		}
 
-		this.game_space = temp_game_space.concat();
+		this.game_space = temp_game_space;
 		//this.printGameBoard(this.game_space);
 		return this.game_space;
 		///console.log(this.temp_game_space);
@@ -198,9 +182,5 @@ var ConwayGameOfLife = {
 			return false
 		else if (count < 2)
 			return false;
-	},
-
-	findEnd: function() {
-
 	}
 };
