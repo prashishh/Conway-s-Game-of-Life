@@ -14,11 +14,17 @@
 </head>
     
  <body>
-	<input type="button" id="buttonid" value="click">
+    <canvas id="ex03" style="margin-left: 40px;"></canvas> <br>
+	<input type="button" id="pause" value="Pause">
+    <input type="button" id="continue" value="Continue">
+    <input type="button" id="one_step" value="One Step">
 
-    <canvas id="ex03"></canvas>
+
 
     <script type="text/javascript">
+
+    var temp;
+
 	ConwayGameOfLife.start();
     
     function draw_ex03(){
@@ -31,13 +37,12 @@
         var count = 0;
         for(var i=0; i<10; i++){
             var yPos = (rectSize+1)*i;
-            
             for(var j=0;j<10;j++) {
                 if(ConwayGameOfLife.game_space[count] == "1"){
-                    ctx.fillStyle="#000000";
+                    ctx.fillStyle="#FF0000";
                     ctx.fillRect((rectSize+1)*j,yPos,rectSize,rectSize);  
                 } else {
-                    ctx.fillStyle="#FFFFFF";
+                    ctx.fillStyle="#EEEEEE";
                     ctx.fillRect((rectSize+1)*j,yPos,rectSize,rectSize);  
                 }
 
@@ -47,18 +52,32 @@
         }
     }
 
-	function listener() {
-	    var button = document.getElementById("buttonid");
-        button.addEventListener("click", function() { 
-        	ConwayGameOfLife.oneLoop();
-            draw_ex03();
+	function button_listners() {
+        document.getElementById("pause").addEventListener("click", function() { 
+        	clearInterval(temp);
 	 	});
-        draw_ex03();
 
+        document.getElementById("continue").addEventListener("click", function() { 
+            clearInterval(temp);
+            temp = setInterval( function() { autoLoop(); }, 100);
+        });
+
+        document.getElementById("one_step").addEventListener("click", function() { 
+            ConwayGameOfLife.oneLoop();
+            draw_ex03();
+        });
+        draw_ex03();
 	};
 
+    function autoLoop() {
+        ConwayGameOfLife.oneLoop();
+        draw_ex03();
+    }
+
     function on_load() {
-        listener();
+        button_listners();
+        temp = setInterval( function() { autoLoop(); }, 100);
+  
     }
 
       window.onload = on_load();

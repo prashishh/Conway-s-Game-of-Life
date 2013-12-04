@@ -55,7 +55,7 @@ void printGameBoard(vector<int> temp_space) {
     for(int i = 0; i < 100; i++) {
         if(i % 10 == 0)
             cout << "\n";
-        cout  << temp_space[i] << " ";
+        cout  << temp_space[i] << ", ";
     }
     cout << "\n";
 }
@@ -335,9 +335,9 @@ void startGA() {
         startGame();
         
         if(global_fitness < 1000) {
-            cout << "Live if surrounding cell > " << rule1 << endl;
-            cout << "Die if surrounding cell < " << rule2 << endl;
-            cout << "Die if surrounding cell = " << rule3 << endl;
+            cout << "Live if surrounding cell = " << rule1 << endl;
+            cout << "Die if surrounding cell > " << rule2 << endl;
+            cout << "Die if surrounding cell < " << rule3 << endl;
             
             cout << "Ended after " << global_fitness << " generation" << endl;
             cout << "Intial State: ";
