@@ -39,29 +39,28 @@ Remove the comments either:
 ```javascript
 for (var i=0; i < 100; i++) {
 			this.game_space[i] = this.IsLiveOrDead();
-		}```
+			
  Or
  
- ```javascript
- 		this.game_space =  [1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 
-							0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 
-							0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 
-							0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 
-							1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 
-							0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 
-							1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 
-							1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 
-							1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 
-							1, 1, 1, 1, 0, 0, 0, 1, 0, 0];
+this.game_space =  [1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 
+					0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 
+					0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 
+					0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 
+					1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 
+					0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 
+					1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 
+					1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 
+					1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 
+					1, 1, 1, 1, 0, 0, 0, 1, 0, 0];
 ```
 
 The index.html has 3 buttons to either pause the game, continue the game after pause or run one generation at a click after pause.
 
 ####Running the Game
 
-* Run either cgol.cpp or new_pattern.cpp.
+* Run either `cgol.cpp` or `new_pattern.cpp`.
 * After a generation is found, it will print the initial state of the game board.
-* In new_pattern.cpp, it will print out the initial state and the rules.
+* In `new_pattern.cpp`, it will print out the initial state and the rules.
 
 	```
 	Live if surrounding cell == 1
@@ -84,16 +83,16 @@ The index.html has 3 buttons to either pause the game, continue the game after p
 * Change input method to user input in `script.js`.
 
  ```javascript
- 		this.game_space =  [1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 
-							0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 
-							0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 
-							0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 
-							1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 
-							0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 
-							1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 
-							1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 
-							1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 
-							1, 1, 1, 1, 0, 0, 0, 1, 0, 0];
+this.game_space =  [1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 
+					0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 
+					0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 
+					0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 
+					1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 
+					0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 
+					1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 
+					1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 
+					1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 
+					1, 1, 1, 1, 0, 0, 0, 1, 0, 0];
 ```
 
 * Change the rule set in `script.js` file to see the visualization:
@@ -117,10 +116,10 @@ The index.html has 3 buttons to either pause the game, continue the game after p
 			else if (count < 2) // rule3
 				return false;
 	```
-	* Done.
+	* _Done._
 	
 	
-**Few interesting patterns that I observed were: **
+###Few interesting patterns that I observed were:
 
 #####Pattern 1
 ![alt text](http://prashish.files.wordpress.com/2013/12/screen-shot-2013-12-03-at-6-09-42-pm.png)
